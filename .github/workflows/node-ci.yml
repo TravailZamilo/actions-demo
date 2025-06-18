@@ -2,25 +2,32 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Clonar repositorio
-      uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Usar Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-    - name: Instalar dependencias
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Ejecutar pruebas
-      run: npm test
+      - name: Run tests
+        run: npm test
+
+      - name: Mostrar entorno con secret NODE_ENV
+        run: echo "Entorno actual: ${{ secrets.NODE_ENV }}"
+
+      - name: Mostrar API_KEY
+        run: echo "Tu API key es: ${{ secrets.API_KEY }}"
