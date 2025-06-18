@@ -27,7 +27,9 @@ jobs:
         run: npm test
 
       - name: Mostrar entorno con secret NODE_ENV
-        run: echo "Entorno actual: ${{ secrets.NODE_ENV }}"
+        run: |
+          echo "Entorno actual: ${{ secrets.NODE_ENV }}"
 
       - name: Mostrar API_KEY
-        run: echo "Tu API key es: ${{ secrets.API_KEY }}"
+        run: |
+          echo "Tu API key es: ${{ secrets.API_KEY }}"
